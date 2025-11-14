@@ -2,6 +2,10 @@
 name = "wyzie-subs"
 version = "0.1.0"
 edition = "2024"
+readme = "README.md"
+license = "MIT OR Apache-2.0"
+repository = "https://github.com/TymekV/wyzie-subs"
+description = "Async Wyzie Subs client using reqwest"
 
 [features]
 utoipa-impl = ["dep:utoipa"]

@@ -24,21 +24,27 @@ pub struct SearchParams {
     pub id: String,
 
     /// The season of the media if it's a show.
+    #[builder(default, setter(strip_option))]
     pub season: Option<u32>,
 
     /// The episode of the media if it's a show.
+    #[builder(default, setter(strip_option))]
     pub episode: Option<u32>,
 
     /// The language of the subtitles that will be returned (must be in an ISO 3166-2 code).
-    pub language: String,
+    #[builder(default, setter(strip_option))]
+    pub language: Option<String>,
 
     /// The format of subtitles returned.
+    #[builder(default, setter(strip_option))]
     pub format: Option<SubtitlesFormat>,
 
     /// Determines if the subtitles are for the hearing impaired.
+    #[builder(default, setter(strip_option))]
     pub hi: Option<bool>,
 
     /// The character encoding of the subtitle files.
+    #[builder(default, setter(strip_option))]
     pub encoding: Option<String>,
 }
 

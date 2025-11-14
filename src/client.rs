@@ -6,7 +6,7 @@ use crate::{
     models::{SearchParams, Subtitle},
 };
 
-#[derive(TypedBuilder)]
+#[derive(TypedBuilder, Clone)]
 pub struct WyzieClient {
     #[builder(default)]
     reqwest_client: reqwest::Client,

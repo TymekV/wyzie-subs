@@ -6,13 +6,19 @@ use crate::{
     models::{SearchParams, Subtitle},
 };
 
-#[derive(TypedBuilder, Clone)]
+#[derive(TypedBuilder, Clone, Debug)]
 pub struct WyzieClient {
     #[builder(default)]
     reqwest_client: reqwest::Client,
 
     #[builder(default = Url::parse("https://sub.wyzie.ru").expect("hardcoded url should parse"))]
     base_url: Url,
+}
+
+impl Default for WyzieClient {
+    fn default() -> Self {
+        WyzieClient::builder().build()
+    }
 }
 
 impl WyzieClient {

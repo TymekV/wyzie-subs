@@ -12,26 +12,28 @@ A client for downloading subtitles from [sub.wyzie.ru](https://sub.wyzie.ru).
 - `schemars-impl` - Implements [JsonSchema](https://docs.rs/schemars/latest/schemars/trait.JsonSchema.html) on data structures
 
 ## Usage
-Add this to your `Cargo.toml`:
 
 ```rust
-// Build a default client
-let wyzie = WyzieClient::default();
+use reqwest::Client;
+use url::Url;
+use wyzie_subs::{WyzieClient, models::SearchParams};
 
-// Or configure it
-let wyzie = WyzieClient::builder()
-    .base_url(Url::parse("https://sub.wyzie.ru")?)
-    .reqwest_client(Client::new())
-    .build();
+#[tokio::main]
+async fn main() {
+    let wyzie = WyzieClient::builder()
+        .base_url(Url::parse("https://sub.wyzie.ru").unwrap())
+        .reqwest_client(Client::new())
+        .build();
 
-// Search for subtitles
-let params = SearchParams::builder()
-    .id("93740".to_string())
-    .season(1)
-    .episode(1)
-    .build();
+    let params = SearchParams::builder()
+        .id("93740".to_string())
+        .season(1)
+        .episode(1)
+        .key(std::env::var("API_KEY").unwrap())
+        .build();
 
-let subtitles = wyzie.search(&params).await?;
+    let subtitles = wyzie.search(&params).await.unwrap();
+}
 ```
 
 ## License
